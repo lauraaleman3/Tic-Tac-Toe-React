@@ -1,7 +1,70 @@
-// // ATTEMPT WITH 'X' AND 'O'
-import React from 'react';
+// // ATTEMPT WITH 'X' AND 'O' WITH REACT
+
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import {
+  BrowserRouter as Router, // we are aliasing this module for a cleaner call
+  Route,
+  Link
+  // etc.
+} from 'react-router-dom';
+
+
+ class Flowers extends Component {
+  render() {
+    return (
+      <div>
+        <h1>Flowers</h1>
+        <img src="https://uploads-ssl.webflow.com/5f3579657fc55ba0f865b027/5f3579657fc55b369465b8f7_pink-flowers-700x371.jpg" />
+      </div>
+    );
+  }
+}
+
+class Rocks extends Component {
+  render() {
+    return (
+      <div>
+          <h1>Rocks</h1>
+        <img src="https://www.sandatlas.org/wp-content/uploads/Igneous-rocks-gabbro-andesite-pegmatite-basalt-pumice-porphyry-obsidian-granite-tuff.jpg" />
+      </div>
+    );
+  }
+}
+
+class Navbar extends Component {
+  render(){
+    return(
+      <div className="nav">
+        <Link to="/">Game</Link> | 
+        <Link to="Flowers">Flowers</Link> | 
+        <Link to="Rocks">Rocks</Link>
+      </div>
+    );
+  }
+}
+
+class Routes extends Component {
+  render(){
+    return(
+      <Router>
+        <div>
+          <Navbar />
+          <hr />
+          <Route name="Game" exact path="/" component={Game}/>
+          <Route name="Flowers" path="/Flowers" component={Flowers}/>
+          <Route name="Rocks" path="/Rocks" component={Rocks} />
+        </div>
+      </Router>
+    );
+  }
+}
+
+
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+
 function Square(props) {
     return (
       <button className="square" onClick={props.onClick}>
@@ -124,8 +187,8 @@ function Square(props) {
   }
   
   // ========================================
-  
-  ReactDOM.render(<Game />, document.getElementById("root"));
+  ReactDOM.render(<Routes />,document.getElementById('root'));
+  // ReactDOM.render(<Game />, document.getElementById("root"));
   
   function calculateWinner(squares) {
     const lines = [
@@ -147,7 +210,7 @@ function Square(props) {
     return null;
   }
   
-
+  
 
 
 
